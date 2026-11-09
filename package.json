@@ -1,0 +1,3 @@
+{ "name": "adwmx-reels38", "private": true, "version": "1.0.0", "type": "module",
+  "scripts": { "deploy": "wrangler deploy", "ping": "node check.mjs", "test": "node --experimental-sqlite selftest.mjs && MODE=d1 node --experimental-sqlite selftest.mjs" },
+  "devDependencies": { "wrangler": "^4" } }

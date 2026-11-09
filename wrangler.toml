@@ -1,0 +1,33 @@
+# سيرفر الريلز والميديا (منفصل عن سيرفر الشات). ملفات وبيانات على D1.
+name = "adwmx-reels38"
+main = "worker.js"
+compatibility_date = "2026-11-05"
+workers_dev = true
+preview_urls = false
+
+[observability]
+enabled = true
+
+# من غير database_id / مفاتيح: wrangler بينشئ القاعدة والـ bucket تلقائياً أول نشر.
+[[d1_databases]]
+binding = "DB"
+database_name = "adwmx-reels38"
+
+# التخزين دلوقتي على D1 (من غير R2 ولا بطاقة). لو فعّلت R2 بعدين: أضف هنا
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "adwmx-reels38"
+# والسيرفر هيستخدمه تلقائياً بحدود أكبر.
+
+# الاتصال بسيرفر الشات للتعرف على الحساب (لازم يكون اسمه نفس اسم الـ Worker المنشور هناك)
+[[services]]
+binding = "MAIN"
+service = "adwmx-chat37"
+
+# تنضيف يومي 3 الفجر (UTC)
+[triggers]
+crons = ["0 3 * * *"]
+
+[vars]
+MAIN_URL = "https://adwmx-chat37.jffnco.workers.dev"
+DEBUG = "true"
